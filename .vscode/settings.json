@@ -1,0 +1,20 @@
+{
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true,
+    "files.exclude": {
+        ".gitignore": true,
+        ".npmignore": true,
+        ".vscode": true,
+        ".eslintignore": true,
+        ".eslintrc.js": true,
+        "package-lock.json": true,
+        "dist": true,
+        "node_modules": true,
+        "package.json": true,
+        "LICENSE": true,
+        "tsconfig.json": true,
+        "readme.md": true
+    }
+}

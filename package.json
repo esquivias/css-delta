@@ -1,0 +1,54 @@
+{
+    "name": "css-delta",
+    "version": "0.0.1",
+    "description": "Capture the difference between two analogous stylesheets.",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "eslint": "eslint . --ext .ts",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "bin": {
+        "css-delta": "./dist/index.js"
+    },
+    "repository": "github:esquivias/css-delta",
+    "keywords": [
+        "css",
+        "stylesheet",
+        "compare",
+        "difference",
+        "delta"
+    ],
+    "author": "Daniel Esquivias",
+    "contributors": [
+        {
+            "name": "Bert Johnson",
+            "email": "bert@bertjohnson.com",
+            "url": "https://bertjohnson.com"
+        },
+        {
+            "name": "Doug Hall",
+            "url": "https://github.com/dougahall"
+        },
+        {
+            "name": "Qinyuan Zhang",
+            "url": "https://github.com/545034298"
+        }
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^3.3.0",
+        "@typescript-eslint/parser": "^3.3.0",
+        "eslint": "^7.2.0",
+        "eslint-config-prettier": "^6.11.0",
+        "typescript": "^3.9.5",
+        "yargs": "^15.3.1"
+    },
+    "devDependencies": {
+        "@types/node": "^14.0.13",
+        "@types/yargs": "^15.0.5"
+    }
+}

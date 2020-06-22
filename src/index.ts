@@ -247,15 +247,19 @@ styles
 if (lastMediaBlock.trim().length != 0) {
 	output.push("}");
 }
-if (
-	argv.output != undefined &&
-	argv.output.endsWith(".css") &&
-	argv.output.trim().length !== 4
-) {
-	writeFileSync(argv.output.trim(), output.join("\n"));
-	console.log(`File written to ${argv.output}`);
+if (output.length != 0) {
+	if (
+		argv.output != undefined &&
+		argv.output.endsWith(".css") &&
+		argv.output.trim().length !== 4
+	) {
+		writeFileSync(argv.output.trim(), output.join("\n"));
+		log(`file written to ${argv.output}`);
+	} else {
+		console.log(output.join("\n"));
+	}
 } else {
-	console.log(output.join("\n"));
+	log("identical files");
 }
 /**
  * Standardize CSS file spacing and other formatting
@@ -334,7 +338,22 @@ function AddNormalizedLine(line: string, output: string[]): string[] {
 	// Append Newline
 	line = line.trim();
 	if (line.length != 0) {
+		if (line.indexOf(";") == 0) {
+			line = line.substr(1, line.length);
+		}
+		line = line.replace(/\s?:\s?/g, ": ");
 		output.push(line);
 	}
 	return output;
+}
+/**
+ * Log line formatting based on process output
+ * @param line raw string to log
+ */
+function log(line: string): void {
+	if (Boolean(process.stdout.isTTY)) {
+		console.log(line);
+	} else {
+		console.log(`/* css-delta: ${line} */`);
+	}
 }

@@ -312,7 +312,7 @@ function AddNormalizedLine(line: string, output: string[]): string[] {
 	});
 	// Break Individual Styles Into Their Own Lines
 	let semicolon = line.indexOf(";");
-	while (semicolon != 1 && line.length > 0) {
+	while (semicolon != -1 && line.length > 0) {
 		// Handle Empty Lines
 		if (semicolon == 0) {
 			if (line.length > 1) {
@@ -323,7 +323,7 @@ function AddNormalizedLine(line: string, output: string[]): string[] {
 		}
 		if (semicolon < line.length - 1) {
 			output = AddNormalizedLine(line.substr(0, semicolon + 1), output);
-			line = line.substring(semicolon);
+			line = line.substring(semicolon + 1);
 			break;
 		} else {
 			// Remove Trailing Semicolon
@@ -335,14 +335,17 @@ function AddNormalizedLine(line: string, output: string[]): string[] {
 		}
 		semicolon = line.indexOf(";");
 	}
-	// Append Newline
+	// Append Newlines
 	line = line.trim();
 	if (line.length != 0) {
-		if (line.indexOf(";") == 0) {
-			line = line.substr(1, line.length);
-		}
-		line = line.replace(/\s?:\s?/g, ": ");
-		output.push(line);
+		line.replace(/\s?:\s?/g, ":")
+			.split(";")
+			.forEach((line) => {
+				line = line.trim();
+				if (line.length != 0) {
+					output.push(line);
+				}
+			});
 	}
 	return output;
 }

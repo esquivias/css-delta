@@ -231,21 +231,31 @@ styles
 				} else {
 					selectorLine += ",";
 				}
-				output.push(selectorLine);
+				output.push(
+					selectorLine.replace(
+						/(\s{1,})?([>|+|~|])(\s{1,})?/g,
+						" $2 "
+					)
+				);
 			}
 		}
 		item.value?.forEach((value) => {
 			if (value != undefined) {
-				output.push(`${extraIndentation}\t${value};`);
+				output.push(
+					`${extraIndentation}\t${value.replace(
+						/(.+?)\:(.+)/,
+						"$1: $2"
+					)};`
+				);
 			}
 		});
-		output.push(`${extraIndentation}}`);
+		output.push(`${extraIndentation}}\n`);
 		if (mediaBlock != undefined) {
 			lastMediaBlock = mediaBlock;
 		}
 	});
 if (lastMediaBlock.trim().length != 0) {
-	output.push("}");
+	output.push("}\n");
 }
 if (output.length != 0) {
 	if (

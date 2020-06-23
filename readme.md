@@ -18,7 +18,7 @@ The command `css-delta` is available upon installation with the following option
 
 ### Example
 
-`css-delta -from original.css -to modified.css -output difference.css`
+`css-delta --from original.css --to modified.css --output difference.css`
 
 ## Attribution
 
